@@ -22,7 +22,7 @@ const interfaces = os.networkInterfaces();
 const {wlan0: connections} = interfaces;
 const [wifi] = connections || {};
 const {address: localIP} = wifi;
-const version = 1.1;
+const version = 1.2;
 
 let isInitialized = false;
 let viewState = 0;
@@ -82,7 +82,7 @@ const clearTimers = () => {
 };
 
 const prepareTickerTape = (words, opts = {}) => {
-    const {duration: defaultDuration = 30, frames} = alphabetFeel;
+    const {duration: defaultDuration = 50, frames} = alphabetFeel;
     const {color = '8d8d8d', duration: definedDuration} = opts;
     const duration = definedDuration || defaultDuration;
     const letters = words.split('').map(letter => {
@@ -92,7 +92,7 @@ const prepareTickerTape = (words, opts = {}) => {
             return frames[idx];
         }
     });
-    const frameBuffer = 63;
+    const frameBuffer = 64;
     const allPixels = [];
     const frameCount = (letters.length * 8) + 8;
     const letterFrames = [];
@@ -279,7 +279,7 @@ socket.on('emote', data => {
 });
 
 socket.on('words', data => {
-    const {duration = 30, words} = data;
+    const {duration = 50, words} = data;
     const feeling = prepareTickerTape(words, {duration});
 
     showFeeling(feeling);
