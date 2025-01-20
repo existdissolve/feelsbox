@@ -18,3 +18,8 @@ In **3: Boot Options**, set **B2: Wait for Network at Boot** to true
 cd /usr/local/code/feelsbox && git pull origin v2 && npm start &
 exit 0
 ```
+
+## Debugging
+For local debugging, use:
+
+`const socket = io('https://feelsbox.ngrok.io', {forceNew: true});`
